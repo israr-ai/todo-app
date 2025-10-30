@@ -25,7 +25,7 @@ class Todo(db.Model):
     
    
 @app.route("/", methods=['GET','POST'])
-def hello_world():
+def home():
     print("Request method :",request.method)
     if request.method == "POST":
         print("post")
