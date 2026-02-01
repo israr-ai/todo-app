@@ -1,3 +1,6 @@
+
+![alt text](TodoApp.jpeg)
+
 pip install virtualenv
 virtualenv env
 .\env\Scripts\activate.ps1

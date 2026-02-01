@@ -2,58 +2,130 @@
 {% block title %} Home {% endblock title %}
 {% block body %} 
  
-<div class="container ">
-    <h1>Add a Todu</h1>
-   <form action="/" method="POST">
-  <div class="mb-3">
-    <label for="title" class="form-label">Todo Title</label>
-    <input type="text" class="form-control" name="title" id="title">
-    <div id="title" class="form-text">We'll never share your email with anyone else.</div>
+<div class="container d-flex justify-content-center">
+  <div class="card shadow-lg mt-5" style="max-width: 600px; width: 100%;">
+    
+    <div class="card-header bg-primary text-white text-center">
+      <h4 class="mb-0">➕ Add a New Todo</h4>
+    </div>
+
+    <div class="card-body">
+      <form action="/" method="POST">
+
+        <!-- Todo Title -->
+        <div class="mb-3">
+          <label for="title" class="form-label fw-semibold">Todo Title</label>
+          <input 
+            type="text" 
+            class="form-control form-control-lg" 
+            id="title" 
+            name="title" 
+            placeholder="Enter todo title" 
+            required
+          >
+          <div class="form-text">
+            Keep it short and meaningful
+          </div>
+        </div>
+
+        <!-- Todo Description -->
+        <div class="mb-3">
+          <label for="desc" class="form-label fw-semibold">Todo Description</label>
+          <textarea 
+            class="form-control" 
+            id="desc" 
+            name="desc" 
+            rows="3" 
+            placeholder="Enter todo description"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-lg">
+            Save Todo
+          </button>
+        </div>
+
+      </form>
+    </div>
+
   </div>
-  <div class="mb-3">
-    <label for="desc" class="form-label">Todo description</label>
-    <input type="text" class="form-control"  name="desc">
-  </div>
- 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
 </div>
 
-<div class="container my-3">
-    <h1>My Todu Table</h1>
-   
-    {% if alltodo|length == 0 %}
-      <div class="alert alert-dark" role="alert">
-        No todo found . Add your first todo now!
-     </div>
-    {% else %}
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Sno</th>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th scope="col">Title</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-       {% for todo in alltodo %}
-       <tr>
-      <th scope="row">{{loop.index}}</th>
-      <td>{{todo.title}}</td>
-      <td>{{todo.desc}}</td>
-      <td>{{todo.date_created}}</td>
-      <td>
-        <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-dark btn-sm mx-1">Delete</a>
-        <a href="/update/{{todo.sno}}" type="btton" class="btn btn-outline-dark btn-sm mx-1">Update</a>
-      </td>
-    </tr>
-    {% endfor %}
-     </tbody>
-</table>
-    
-    {% endif %}
-  
+
+<div class="container my-4">
+
+  <div class="card shadow-sm">
+
+    <!-- Card Header -->
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">📋 My Todo List</h5>
+      <span class="badge bg-primary">Total: {{ alltodo|length }}</span>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body">
+
+      {% if alltodo|length == 0 %}
+        <div class="alert alert-warning text-center mb-0">
+          😕 No todos found. Add your first todo!
+        </div>
+      {% else %}
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+
+          <thead class="table-dark">
+            <tr>
+              <th>S.No</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Created On</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for todo in alltodo %}
+            <tr>
+              <td>{{ loop.index }}</td>
+
+              <td class="fw-semibold">
+                {{ todo.title }}
+              </td>
+
+              <td class="text-muted">
+                {{ todo.desc }}
+              </td>
+
+              <td>
+                <span class="badge bg-secondary">
+                  {{ todo.date_created.strftime('%d %b %Y') }}
+                </span>
+              </td>
+
+              <td class="text-center">
+                <a href="/update/{{ todo.sno }}" class="btn btn-sm btn-outline-primary me-1">
+                  ✏️ Edit
+                </a>
+                <a href="/delete/{{ todo.sno }}" class="btn btn-sm btn-outline-danger">
+                  🗑 Delete
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+
+      {% endif %}
+
+    </div>
+  </div>
+
 </div>
+
  {% endblock body %} 
