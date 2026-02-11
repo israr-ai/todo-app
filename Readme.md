@@ -1,9 +1,10 @@
+```
 pip install virtualenv
 virtualenv env
 .\env\Scripts\activate.ps1
 pip install flask
  pip install flask-sqlalchemy (for database)
-
+```
  ## import the database in python
  ```
  >>python (enter) in virtual envirment 
