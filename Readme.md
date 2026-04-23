@@ -1,7 +1,8 @@
 pip install virtualenv
-virtualenv env
+<!-- virtualenv env -->
 .\env\Scripts\activate.ps1
 pip install flask
+
  pip install flask-sqlalchemy (for database)
 ```
  ## import the database in python
