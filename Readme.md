@@ -1,5 +1,5 @@
 ### live demo todo-app
-live :[[https://todo-app2-wccr.onrender.com/](https://todo-app-2-oguq.onrender.com)](https://todo-app-2-oguq.onrender.com)
+live :https://todo-app-2-oguq.onrender.com
 
 pip install virtualenv
 <!-- virtualenv env -->
